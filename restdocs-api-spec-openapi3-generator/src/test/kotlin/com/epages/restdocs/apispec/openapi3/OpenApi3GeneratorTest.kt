@@ -18,6 +18,7 @@ import com.jayway.jsonpath.JsonPath
 import com.jayway.jsonpath.Option
 import io.swagger.parser.OpenAPIParser
 import io.swagger.parser.models.ParseOptions
+import io.swagger.v3.oas.models.info.Contact
 import io.swagger.v3.oas.models.servers.Server
 import org.assertj.core.api.BDDAssertions.then
 import org.junit.jupiter.api.Test
@@ -519,6 +520,7 @@ class OpenApi3GeneratorTest {
         then(openApiJsonPathContext.read<String>("info.title")).isEqualTo("API")
         then(openApiJsonPathContext.read<String>("info.description")).isEqualTo("API Description")
         then(openApiJsonPathContext.read<String>("info.version")).isEqualTo("1.0.0")
+        then(openApiJsonPathContext.read<String>("info.contact.name")).isEqualTo("Test Contact")
     }
 
     private fun thenTagFieldsPresent() {
@@ -579,7 +581,8 @@ class OpenApi3GeneratorTest {
             ),
             format = "json",
             description = "API Description",
-            tagDescriptions = mapOf("tag1" to "tag1 description", "tag2" to "tag2 description")
+            tagDescriptions = mapOf("tag1" to "tag1 description", "tag2" to "tag2 description"),
+            contact = Contact().apply { name = "Test Contact" }
         )
 
         println(openApiSpecJsonString)
