@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/github/license/ePages-de/restdocs-openapi.svg)
 [![Build Status](https://travis-ci.com/ePages-de/restdocs-api-spec.svg?branch=master)](https://travis-ci.com/ePages-de/restdocs-api-spec)
-[![Maven Central](https://img.shields.io/maven-central/v/com.epages/restdocs-api-spec)](https://search.maven.org/artifact/com.epages/restdocs-api-spec)
+[![Maven Central](https://img.shields.io/maven-central/v/dev.marcosalmeida/restdocs-api-spec)](https://search.maven.org/artifact/dev.marcosalmeida/restdocs-api-spec)
 [![Coverage Status](https://coveralls.io/repos/github/ePages-de/restdocs-api-spec/badge.svg?branch=master)](https://coveralls.io/github/ePages-de/restdocs-api-spec?branch=master)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/restdocs-api-spec/Lobby)
 
@@ -85,10 +85,10 @@ The [ResourceSnippet](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apis
     * Using the [plugins DSL](https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block):
         ```groovy
         plugins {
-            id 'com.epages.restdocs-api-spec' version '0.16.0'
+            id 'dev.marcosalmeida.restdocs-api-spec' version '0.16.0'
         }
         ```
-        Examples with Kotlin are also available [here](https://plugins.gradle.org/plugin/com.epages.restdocs-api-spec)
+        Examples with Kotlin are also available [here](https://plugins.gradle.org/plugin/dev.marcosalmeida.restdocs-api-spec)
     * __OR__ Using [legacy plugin application](https://docs.gradle.org/current/userguide/plugins.html#sec:old_plugin_application):
         * *1.1* Use of `buildscript` requires you to add the `https://plugins.gradle.org/m2/` repository.
         * *1.2* add the dependency to `restdocs-api-spec-gradle-plugin`
@@ -101,15 +101,15 @@ The [ResourceSnippet](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apis
             }
           }
           dependencies {
-            classpath "com.epages:restdocs-api-spec-gradle-plugin:0.16.0" //1.2
+            classpath "dev.marcosalmeida:restdocs-api-spec-gradle-plugin:0.16.0" //1.2
           }
         }
 
-        apply plugin: 'com.epages.restdocs-api-spec' //1.3
+        apply plugin: 'dev.marcosalmeida.restdocs-api-spec' //1.3
 
         ```
 2. Add required dependencies to your tests
-    * *2.1* add the `mavenCentral` repository used to resolve the `com.epages:restdocs-api-spec` module of the project.
+    * *2.1* add the `mavenCentral` repository used to resolve the `dev.marcosalmeida:restdocs-api-spec` module of the project.
     * *2.2* add the actual `restdocs-api-spec-mockmvc` dependency to the test scope. Use `restdocs-api-spec-restassured` if you use `RestAssured` instead of `MockMvc`.
     * *2.3* add configuration options for restdocs-api-spec-gradle-plugin`. See [Gradle plugin configuration](#gradle-plugin-configuration)
     ```groovy
@@ -120,7 +120,7 @@ The [ResourceSnippet](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apis
 
     dependencies {
         //..
-        testCompile('com.epages:restdocs-api-spec-mockmvc:0.16.0') //2.2
+        testCompile('dev.marcosalmeida:restdocs-api-spec-mockmvc:0.16.0') //2.2
     }
 
     openapi { //2.3
@@ -243,9 +243,9 @@ mockMvc.perform(get("/carts/{id}", cartId)
 ### Documenting Bean Validation constraints
 
 Similar to the way Spring REST Docs allows to use [bean validation constraints](https://docs.spring.io/spring-restdocs/docs/current/reference/html5/#documenting-your-api-constraints) to enhance your documentation, you can also use the constraints from your model classes to let `restdocs-api-spec` enrich the generated JsonSchemas.
-`restdocs-api-spec` provides the class [com.epages.restdocs.apispec.ConstrainedFields](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apispec/ConstrainedFields.kt) to generate `FieldDescriptor`s that contain information about the constraints on this field.
+`restdocs-api-spec` provides the class [dev.marcosalmeida.restdocs.apispec.ConstrainedFields](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apispec/ConstrainedFields.kt) to generate `FieldDescriptor`s that contain information about the constraints on this field.
 
-Currently the following constraints are considered when generating JsonSchema from `FieldDescriptor`s that have been created via `com.epages.restdocs.apispec.ConstrainedFields`
+Currently the following constraints are considered when generating JsonSchema from `FieldDescriptor`s that have been created via `dev.marcosalmeida.restdocs.apispec.ConstrainedFields`
 - `NotNull`, `NotEmpty`, and `NotBlank` annotated fields become required fields in the JsonSchema
 - for String fields annotated with `NotEmpty`, and `NotBlank` the `minLength` constraint in JsonSchema is set to 1
 - for String fields annotated with `Length` the `minLength` and `maxLength` constraints in JsonSchema are set to the value of the corresponding attribute of the annotation
@@ -254,14 +254,14 @@ Currently the following constraints are considered when generating JsonSchema fr
 - for Number fields annotated with `Max`, the `maximum` constraint is propagated to JsonSchema
 - for Number fields annotated with `Size` the `minimum` and `maximum` constraints in JsonSchema are set to the value of the corresponding attribute of the annotation
 
-If you already have your own `ConstraintFields` implementation you can also add the logic from `com.epages.restdocs.apispec.ConstrainedFields` to your own class.
+If you already have your own `ConstraintFields` implementation you can also add the logic from `dev.marcosalmeida.restdocs.apispec.ConstrainedFields` to your own class.
 Here it is important to add the constraints under the key `validationConstraints` into the attributes map if the `FieldDescriptor`.
 
 ### Migrate existing Spring REST Docs tests
 
 #### MockMvc based tests
 
-For convenience when applying `restdocs-api-spec` to an existing project that uses Spring REST Docs, we introduced [com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apispec/MockMvcRestDocumentationWrapper.kt).
+For convenience when applying `restdocs-api-spec` to an existing project that uses Spring REST Docs, we introduced [dev.marcosalmeida.restdocs.apispec.MockMvcRestDocumentationWrapper](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apispec/MockMvcRestDocumentationWrapper.kt).
 
 In your tests you can just replace calls to `MockMvcRestDocumentation.document` with the corresponding variant of `MockMvcRestDocumentationWrapper.document`.
 
@@ -292,7 +292,7 @@ Additionally it will add a `ResourceSnippet` with the descriptors you provided i
 #### REST Assured based tests
 
 Also for REST Assured we offer a convenience wrapper similar to `MockMvcRestDocumentationWrapper`.
-The usage for REST Assured is also similar to MockMVC, except that [com.epages.restdocs.apispec.RestAssuredRestDocumentationWrapper](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apispec/RestAssuredRestDocumentationWrapper.kt) is used instead of [com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apispec/MockMvcRestDocumentationWrapper.kt).
+The usage for REST Assured is also similar to MockMVC, except that [dev.marcosalmeida.restdocs.apispec.RestAssuredRestDocumentationWrapper](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apispec/RestAssuredRestDocumentationWrapper.kt) is used instead of [dev.marcosalmeida.restdocs.apispec.MockMvcRestDocumentationWrapper](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apispec/MockMvcRestDocumentationWrapper.kt).
 
 To use the `RestAssuredRestDocumentationWrapper`, you have to add a dependency to [restdocs-api-spec-restassured](restdocs-api-spec-restassured) to your build.
 ```java
@@ -316,7 +316,7 @@ RestAssured.given(this.spec)
 #### WebTestClient based tests
 
 We also offer a convenience wrapper for `WebTestClient` which works similar to `MockMvcRestDocumentationWrapper`.
-The usage is similar to MockMVC, except that [com.epages.restdocs.apispec.WebTestClientRestDocumentationWrapper](restdocs-api-spec-webtestclient/src/main/kotlin/com/epages/restdocs/apispec/WebTestClientRestDocumentationWrapper.kt) is used instead of [com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apispec/MockMvcRestDocumentationWrapper.kt).
+The usage is similar to MockMVC, except that [dev.marcosalmeida.restdocs.apispec.WebTestClientRestDocumentationWrapper](restdocs-api-spec-webtestclient/src/main/kotlin/com/epages/restdocs/apispec/WebTestClientRestDocumentationWrapper.kt) is used instead of [dev.marcosalmeida.restdocs.apispec.MockMvcRestDocumentationWrapper](restdocs-api-spec/src/main/kotlin/com/epages/restdocs/apispec/MockMvcRestDocumentationWrapper.kt).
 
 To use the `WebTestClientRestDocumentationWrapper`, you will have to add a dependency to [restdocs-api-spec-webtestclient](restdocs-api-spec-webtestclient) to your build.
 
@@ -485,7 +485,7 @@ openapi3 {
 
 Example `build.gradle.kts` configuration closure (by [axkb](https://github.com/axkb), [#112](https://github.com/ePages-de/restdocs-api-spec/issues/112)):
 ```
-configure<com.epages.restdocs.apispec.gradle.OpenApi3Extension> {
+configure<dev.marcosalmeida.restdocs.apispec.gradle.OpenApi3Extension> {
     setServer("http://$apiHost:$apiPort")
     title = "Your title"
     description = "Your description"
@@ -589,7 +589,7 @@ This section of the README is targeted at project maintainers.
 The project is published with the help of [TravisCI](./.travis.yml).
 It's version number is determined by the Git tags (see [allegro/axion-release-plugin](https://axion-release-plugin.readthedocs.io)).
 The Java dependencies are published to Sonatype with the help of the [gradle-nexus/publish-plugin](https://github.com/gradle-nexus/publish-plugin) and the Maven Publish Plugin.
-The Gradle plugin is published to the [Gradle plugin portal](https://plugins.gradle.org/plugin/com.epages.restdocs-api-spec) with the help of the ['plugin-publish' plugin](https://plugins.gradle.org/plugin/com.gradle.plugin-publish) (see [docs.gradle.org](https://docs.gradle.org/current/userguide/publishing_gradle_plugins.html)).
+The Gradle plugin is published to the [Gradle plugin portal](https://plugins.gradle.org/plugin/dev.marcosalmeida.restdocs-api-spec) with the help of the ['plugin-publish' plugin](https://plugins.gradle.org/plugin/com.gradle.plugin-publish) (see [docs.gradle.org](https://docs.gradle.org/current/userguide/publishing_gradle_plugins.html)).
 
 Given that the `master` branch on the upstream repository is in the state from which you want to create a release, execute the following steps:
 

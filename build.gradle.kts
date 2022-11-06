@@ -42,7 +42,7 @@ val nonSampleProjects =  subprojects.filterNot { it.isSampleProject() }
 
 allprojects {
 
-    group = "com.epages"
+    group = "dev.marcosalmeida"
     version = scmVer
 
     if (!isSampleProject()) {

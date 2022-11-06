@@ -11,9 +11,9 @@ plugins {
 
 gradlePlugin {
     plugins {
-        register("com.epages.restdocs-api-spec") {
-            id = "com.epages.restdocs-api-spec"
-            implementationClass = "com.epages.restdocs.apispec.gradle.RestdocsApiSpecPlugin"
+        register("dev.marcosalmeida.restdocs-api-spec") {
+            id = "dev.marcosalmeida.restdocs-api-spec"
+            implementationClass = "dev.marcosalmeida.restdocs.apispec.gradle.RestdocsApiSpecPlugin"
         }
     }
 }
@@ -25,13 +25,13 @@ pluginBundle {
     description = "Extends Spring REST Docs with API specifications in OpenAPI2, OpenAPI3 and Postman Collections formats"
 
     (plugins) {
-        "com.epages.restdocs-api-spec" {
+        "dev.marcosalmeida.restdocs-api-spec" {
             displayName = "restdocs-api-spec gradle plugin"
         }
     }
 
     mavenCoordinates {
-        groupId = "com.epages"
+        groupId = "dev.marcosalmeida"
         artifactId = "restdocs-api-spec-gradle-plugin"
     }
 }

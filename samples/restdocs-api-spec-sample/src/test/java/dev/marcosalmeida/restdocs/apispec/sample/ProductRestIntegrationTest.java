@@ -1,4 +1,4 @@
-package com.epages.restdocs.apispec.sample;
+package dev.marcosalmeida.restdocs.apispec.sample;
 
 import com.epages.restdocs.apispec.ConstrainedFields;
 import com.fasterxml.jackson.core.JsonProcessingException;

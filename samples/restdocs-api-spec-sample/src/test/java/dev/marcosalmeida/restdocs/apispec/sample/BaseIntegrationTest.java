@@ -1,4 +1,4 @@
-package com.epages.restdocs.apispec.sample;
+package dev.marcosalmeida.restdocs.apispec.sample;
 
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
