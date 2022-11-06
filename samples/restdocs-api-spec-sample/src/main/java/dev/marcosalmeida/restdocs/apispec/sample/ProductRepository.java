@@ -1,4 +1,4 @@
-package com.epages.restdocs.apispec.sample;
+package dev.marcosalmeida.restdocs.apispec.sample;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 

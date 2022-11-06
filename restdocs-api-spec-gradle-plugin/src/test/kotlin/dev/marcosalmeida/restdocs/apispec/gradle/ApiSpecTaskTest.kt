@@ -81,7 +81,7 @@ abstract class ApiSpecTaskTest {
     fun baseBuildFile() = """
         plugins {
             id 'java'
-            id 'com.epages.restdocs-api-spec'
+            id 'dev.marcosalmeida.restdocs-api-spec'
         }
 
     """.trimIndent()

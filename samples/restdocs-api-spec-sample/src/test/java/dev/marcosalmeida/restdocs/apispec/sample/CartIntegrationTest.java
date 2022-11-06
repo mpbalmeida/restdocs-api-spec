@@ -1,4 +1,4 @@
-package com.epages.restdocs.apispec.sample;
+package dev.marcosalmeida.restdocs.apispec.sample;
 
 import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
 import static com.epages.restdocs.apispec.ResourceDocumentation.parameterWithName;

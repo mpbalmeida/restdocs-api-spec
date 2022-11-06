@@ -4,7 +4,7 @@ This sample shows how to use restdocs-api-spec with `WebTestClient`.
 
 We can use the `resource` snippet just like any other snippet provided by spring-restdocs.
 
-Note how we depend on `com.epages:restdocs-api-spec` instead of `com.epages:restdocs-api-spec-mockmvc` because we do not want `MockMvc` on the classpath here.
+Note how we depend on `dev.marcosalmeida:restdocs-api-spec` instead of `dev.marcosalmeida:restdocs-api-spec-mockmvc` because we do not want `MockMvc` on the classpath here.
 
 ## Run the sample
 
